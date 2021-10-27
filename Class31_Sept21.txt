@@ -1,0 +1,21 @@
+Preparing API which produces data to web consumer.  					(How to use get() method)
+Example: restapidemo2
+
+Preparing API which consumes the data from web consumer & insert into DB.(How to use post() method)
+Example: restapidemo3
+
+
+
+
+
+
+
+De-serialization:
+==================
+Using De-serialization we can convert json response to model class.
+
+Using JSONParser() methods we can achieve the De-serialization.
+JSONParser belongs to rest_framework.parsers module.
+
+
+

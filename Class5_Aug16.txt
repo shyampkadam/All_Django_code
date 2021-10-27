@@ -1,0 +1,21 @@
+Q1.What is Module in Any Project ?
+
+Ans:
+	A Module is a sub project in Django Web application.
+	A Module consist their resepctive 
+		Template Layer
+		View Layer
+		Model Layer
+
+Q2.How to prepare subproject or module in Django Web application?
+Ans:
+		Step1:Create main project	
+					django-admin   startproject   <mainprojectname>
+		Step2:Enter into main project
+					cd mainprojectname
+		Step3:Create sub project
+					python manage.py  startapp   <subprojectname>
+
+
+application name-practo:
+========================

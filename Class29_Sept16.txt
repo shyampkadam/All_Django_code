@@ -1,0 +1,38 @@
+Basic Crud Operations Using API:
+===============================
+1.Read / Get all objects
+2.Save / Post an object
+3.Read / Get one object 
+4.Update / Put object
+5.Delete / Delete object 
+
+
+Q1.What are idempotent method in Http ?	
+		Get,Put,Delete
+
+Q2.What are non-idempotent method in Http ?
+		Post
+
+Q3.What are safe & un-safe method in Http ?	
+-------------------------------------------------------------
+
+Web service providers Vs Web service consumers:
+===============================================
+
+	https://www.makemytrip.com/  		:    	From,To,Departure,Return,Traveller Class
+	
+	 https://www.airindia.in/ 			:  		Time,Totaltime,Fair
+	
+	
+		B2C			 (Python)										B2C  (Java)
+		
+	https://www.makemytrip.com/  website1  makes request to https://www.airindia.in/ website2 by sending 5 parameters
+	
+	1.Create Model class1									1.Get json object & Create Model class1 acc to json data
+	2.Convert model class object json(Serialization)		2.Prepare Class1 to genearte response in Java object 
+															3.Convert Response to Json object 
+															4.Send response to client
+	
+	3.Get json object & Create Model class2 acc to json data
+	4.Set json data to Model class2 object(Deserialization)
+	

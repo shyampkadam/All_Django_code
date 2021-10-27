@@ -1,0 +1,56 @@
+JSON:(Java Script Object Notation)
+====
+	Common media of data format between Webservice providers & Webservice Consumers.
+	It is similar to Python Dictionaries
+
+python json module:
+-------------------
+1.json.dumps():  (Similar to Serialization)
+	Using this module we can convert python dictionary into json format 
+	
+2.json.loads():	(Similar to Deserialization)
+	Using this module we can convert json format  into python dictionary
+	
+---------------------------------------------------------------------------------------------
+Serializer class:
+=================
+Used to convert model class into json format.
+
+1.Serializer class given by rest_framework package inside serializers module
+
+	from rest_framework  import serializers
+	
+2.All serializer classes must be child of Serializer class
+	
+	class	MySerializer(serializers.Serializer):
+			#fields of model class
+			
+Example: restapidemo2
+
+
+
+JSONRenderer class:
+===================
+Used to render Serialized data into JSON which is understandable by browser/client/front end.
+
+1.JSONRenderer class given by rest_framework package inside renderers module
+
+	from rest_framework  import renderers
+
+
+MIME Types:
+===========
+	Browser Request 			Server reponse (MIME)
+
+	Abdul Kalam histrory		text/plain,text/html,text/css,text/javascipt
+	
+	Abdul Kalam images			images/jpg,images/jpeg,images/png
+	
+	Abdul Kalam speeches		videos/mp4,videos/avi...
+	
+	Vlc player					application/exe
+	
+	Python tutorial				application/docs
+								application/pdfs
+	
+	Employee objects in json	application/json

@@ -1,0 +1,29 @@
+DTL(Django Template Language):
+=============================
+DTL provides set of readymade tags which helps us to bind VIEW data into TEMPLATE.
+
+
+1.Variable Binding			{{	variablename }}
+2.Testing Condition			{% if condition %}
+							{% endif %}
+							{% elif %}
+							{% else %}
+3.Looping					{% for  %}
+							{% endfor %}
+							
+4.Preparing Links			{% url %}
+5.Csrf	tokens
+6.Template inheritance
+....
+
+________________________________________________________________________
+application name-djangoapp4:
+============================
+Template Communication:
+	Here we are creating links to navigate from one template to another template.
+	
+syntax:
+	<a href="{% url 'LINK' %}">
+	
+					linktext
+	</a>

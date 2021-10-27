@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        header
+        {
+            text-align:center;
+            background-color:skyblue;
+            color:white;
+        }
+        footer
+        {
+            text-align:center;
+            background-color:pink;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>All Registered Employee Details Page</h1>
+        <nav>
+            <a href="{% url 'homel'%}">Home</a>|
+            <a href="{% url 'empregl'%}">SignUp</a>|
+            <a href="#">ViewAllEmployee</a>|
+        </nav>
+    </header>
+    <hr>
+    <table align="center" border="1px" cellpadding="5px" cellspacing="5px">
+        <tr>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Full Name</th>
+            <th>City</th>
+            <th>Salary</th>
+        </tr>
+        {% for e in emps %}
+        <tr>
+            <td>{{e.email}}</td>
+             <td>{{e.password}}</td>
+             <td>{{e.fullName}}</td>
+             <td>{{e.city}}</td>
+             <td>{{e.salary}}</td>
+            <td>
+                <a href="{% url 'deleteprocess' n1=e.email %}">
+                    delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <hr>
+    <footer>
+        <h3>Copyright@AshokIt</h3>
+    </footer>
+</body>
+</html>

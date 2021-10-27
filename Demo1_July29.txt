@@ -1,0 +1,32 @@
+Django with Project Demo Session1:
+==================================
+Prerequisites for django:
+-------------------------
+1.Python
+2.UI tech 	(html,css,js)
+3.SQL with any DB
+
+Frameworks used to develop Web Applications using python: 
+---------------------------------------------------------
+	Django, Pyramid, Bottle, Tornado, Flask, web2py
+	
+	
+Q1.Standalone application vs Web application ?
+
+	Standalone applications has to be installed on local machine & provide the services to the
+	current system.
+	Ex:
+		VLC,MSOFFICE,CALC,...
+		
+	Web applications are installed on remote systems & provide the services to the any 
+	client systems throught network.
+	Ex:
+		FB,Gmail,SbiOnline,Youtube,Flipkart,..
+		
+Q2.What is Web Application  & How many types of web applications are available?
+
+	Types of web applications:
+	
+		1.Enterprise applications 	(B-2-C)
+		2.Distributed applications 	(B-2-B)
+				(Rest Frameworks)

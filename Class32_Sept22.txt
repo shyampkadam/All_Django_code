@@ -1,0 +1,231 @@
+CRUD Operations USing Rest API:
+==============================
+
+Project name : restapidemo4
+
+
+
+
+		Method Type			Consumer request endpoint	
+
+
+		GET					http://127.0.0.0:8000 /studentapi/				: Reading all objects
+		
+		
+		GET					http://127.0.0.0:8000 /studentapi/1				: Reading single object 
+		
+		
+		
+		POST				http://127.0.0.0:8000 /studentapi/				: Saving object
+		
+		
+		PUT 				http://127.0.0.0:8000 /studentapi/				: Updating object
+		
+		
+		DELETE				http://127.0.0.0:8000 /studentapi/				:  Deleting object
+		
+
+from django.db import models
+
+# Create your models here.
+class Student(models.Model):
+ name= models.CharField(max_length=100)
+ roll = models.IntegerField()
+ city= models.CharField(max_length=100)
+______________________________________________________________________________
+from django.contrib import admin
+from .models import Student
+# Register your models here.
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+ list_display = ['id', 'name', 'roll', 'city']
+ 
+
+______________________________________________________________________________ 
+ from rest_framework import serializers
+from .models import Student
+
+class StudentSerializer(serializers.Serializer):
+ name= serializers.CharField(max_length=100)
+ roll = serializers.IntegerField()
+ city= serializers.CharField(max_length=100)
+
+ def create(self, validated_data):
+  return Student.objects.create(**validated_data)
+
+ def update(self, instance, validated_data):
+  # print(instance.name)
+  instance.name = validated_data.get('name', instance.name)
+  # print(instance.name)
+  instance.roll = validated_data.get('roll', instance.roll)
+  instance.city = validated_data.get('city', instance.city)
+  instance.save()
+  return instance
+  
+ 
+
+______________________________________________________________________________ 
+
+from django.shortcuts import render
+import io
+from rest_framework.parsers import JSONParser
+from .models import Student
+from .serializers import StudentSerializer
+from rest_framework.renderers import JSONRenderer
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def student_api(request):
+ if request.method == 'GET':
+  json_data = request.body
+  stream = io.BytesIO(json_data)
+  pythondata = JSONParser().parse(stream)
+  id = pythondata.get('id', None)
+  if id is not None:
+   stu = Student.objects.get(id=id)
+   serializer = StudentSerializer(stu)
+   json_data = JSONRenderer().render(serializer.data)
+   return HttpResponse(json_data, content_type='application/json')
+
+  stu = Student.objects.all()
+  serializer = StudentSerializer(stu, many=True)
+  json_data = JSONRenderer().render(serializer.data)
+  return HttpResponse(json_data, content_type='application/json')
+ 
+ if request.method == 'POST':
+  json_data = request.body
+  stream = io.BytesIO(json_data)
+  pythondata = JSONParser().parse(stream)
+  serializer = StudentSerializer(data = pythondata)
+  if serializer.is_valid():
+   serializer.save()
+   res = {'msg': 'Data Created'}
+   json_data = JSONRenderer().render(res)
+   return HttpResponse(json_data, content_type='application/json')
+  json_data = JSONRenderer().render(serializer.errors)
+  return HttpResponse(json_data, content_type='application/json')
+
+ if request.method == 'PUT':
+  json_data = request.body
+  stream = io.BytesIO(json_data)
+  pythondata = JSONParser().parse(stream)
+  id = pythondata.get('id')
+  stu = Student.objects.get(id=id)
+  #  Complete Update - Required All Data from Front End/Client
+  #  serializer = StudentSerializer(stu, data=pythondata) 
+  #  Partial Update - All Data not required
+  serializer = StudentSerializer(stu, data=pythondata, partial=True)
+  if serializer.is_valid():
+   serializer.save()
+   res = {'msg':'Data Updated !!'}
+   json_data = JSONRenderer().render(res)
+   return HttpResponse(json_data, content_type='application/json')
+  json_data = JSONRenderer().render(serializer.errors)
+  return HttpResponse(json_data, content_type='application/json')
+  
+ if request.method == 'DELETE':
+  json_data = request.body
+  stream = io.BytesIO(json_data)
+  pythondata = JSONParser().parse(stream)
+  id = pythondata.get('id')
+  stu = Student.objects.get(id=id)
+  stu.delete()
+  res = {'msg': 'Data Deleted!!'}
+  # json_data = JSONRenderer().render(res)
+  # return HttpResponse(json_data, content_type='application/json')
+  return JsonResponse(res, safe=False)
+
+______________________________________________________________________________  
+
+
+from django.contrib import admin
+from django.urls import path
+from api import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('studentapi/', views.student_api),
+]
+
+
+______________________________________________________________________________
+
+import requests
+import json
+
+URL = "http://127.0.0.1:8000/studentapi/"
+
+def get_data(id = None):
+ data = {}
+ if id is not None:
+  data = {'id':id}
+ json_data = json.dumps(data)
+ r = requests.get(url = URL, data = json_data)
+ data = r.json()
+ print(data)
+
+# get_data(2)
+
+def post_data():
+ data = {
+  'name':'Ravi',
+  'roll':104,
+  'city': 'Dhanbad'
+ }
+
+ json_data = json.dumps(data)
+ r = requests.post(url = URL, data = json_data)
+ data = r.json()
+ print(data)
+
+# post_data()
+
+def update_data():
+ data = {
+  'id': 2,
+  'name':'Kunal',
+  'city': 'Dhanbad'
+ }
+
+ json_data = json.dumps(data)
+ r = requests.put(url = URL, data = json_data)
+ data = r.json()
+ print(data)
+
+update_data()
+
+
+def delete_data():
+ data = { 'id': 4 }
+
+ json_data = json.dumps(data)
+ r = requests.delete(url = URL, data = json_data)
+ data = r.json()
+ print(data)
+
+# delete_data()
+
+====================================================================
+Perform CRUD Operations on Following Model Class:
+
+	Order 
+			orderNumber
+			orderAmout
+			orderBy
+			fromLocation
+			toLocation
+			orderStatus
+			orderCreatedTime
+			orderModifiedTime
+
+
+	Create a folder : sachintask1.zip
+	
+						source code  : 		ordercrudapi (projectname)
+											ordertestapi.py 	 (consumer all 4 request)
+						Post Man Collection :OrderCurApiTest.collection.json
+						
+	subjectname : order api task by sachi 
+	chantifacts3@gmail.com
+										

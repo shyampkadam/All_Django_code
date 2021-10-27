@@ -1,0 +1,175 @@
+DRF pagination:
+==============
+Pagination is a process in which spillting of large database rows into separated pages.
+
+Whenever we are performing list operation (GET), if the number of resources is very huge, then we should go for
+Pagination.
+
+DRF provides several pages classes to implement Pagination
+		
+	1. PageNumberPagination    	:   restapidemo14
+	2. LimitOffsetPagination	:   restapidemo15
+	3. CursorPagination			:   restapidemo16
+	
+====================================================================================
+Page Number Pagination
+====================================================================================
+from django.db import models
+
+# Create your models here.
+class Student(models.Model):
+ name = models.CharField(max_length=50)
+ roll = models.IntegerField()
+
+from django.contrib import admin
+from .models import Student
+# Register your models here.
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+ list_display = ['id', 'name', 'roll']
+
+from rest_framework import serializers
+from .models import Student
+
+class StudentSerializer(serializers.ModelSerializer):
+ class Meta:
+  model = Student
+  fields = ['id', 'name', 'roll']
+
+from django.shortcuts import render
+from .serializers import StudentSerializer
+from .models import Student
+from rest_framework.generics import ListAPIView
+# Create your views here.
+
+class StudentList(ListAPIView):
+ queryset = Student.objects.all()
+ serializer_class = StudentSerializer
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE':5
+}
+
+
+from django.contrib import admin
+from django.urls import path
+from api import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('studentapi/', views.StudentList.as_view()),
+]
+
+
+
+
+
+====================================================================================
+Limit Offset Pagination
+====================================================================================
+
+from django.db import models
+class Student(models.Model):
+ name = models.CharField(max_length=50)
+ roll = models.IntegerField()
+ 
+from django.contrib import admin
+from .models import Student
+# Register your models here.
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+ list_display = ['id', 'name', 'roll']
+ 
+ from rest_framework import serializers
+from .models import Student
+
+class StudentSerializer(serializers.ModelSerializer):
+ class Meta:
+  model = Student
+  fields = ['id', 'name', 'roll']
+
+from rest_framework.pagination import LimitOffsetPagination
+
+class MyLimitOffsetPagination(LimitOffsetPagination):
+ default_limit = 5
+ limit_query_param = 'mylimit'
+ offset_query_param = 'myoffset'
+ max_limit = 6
+
+from django.shortcuts import render
+from .serializers import StudentSerializer
+from .models import Student
+from rest_framework.generics import ListAPIView
+from .mypaginations import MyLimitOffsetPagination
+# Create your views here.
+
+class StudentList(ListAPIView):
+ queryset = Student.objects.all()
+ serializer_class = StudentSerializer
+ pagination_class = MyLimitOffsetPagination
+
+
+
+from django.contrib import admin
+from django.urls import path
+from api import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('studentapi/', views.StudentList.as_view()),
+]
+
+
+====================================================================================
+Cursor Pagination
+====================================================================================
+
+from django.db import models
+
+# Create your models here.
+class Student(models.Model):
+ name = models.CharField(max_length=50)
+ roll = models.IntegerField()
+
+from django.contrib import admin
+from .models import Student
+# Register your models here.
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+ list_display = ['id', 'name', 'roll']
+
+from rest_framework import serializers
+from .models import Student
+
+class StudentSerializer(serializers.ModelSerializer):
+ class Meta:
+  model = Student
+  fields = ['id', 'name', 'roll']
+
+from rest_framework.pagination import CursorPagination
+
+class MyCursorPagination(CursorPagination):
+ page_size = 5
+ ordering = 'name'
+ cursor_query_param = 'cu'
+ 
+ 
+from django.shortcuts import render
+from .serializers import StudentSerializer
+from .models import Student
+from rest_framework.generics import ListAPIView
+from .mypaginations import MyCursorPagination
+# Create your views here.
+
+class StudentList(ListAPIView):
+ queryset = Student.objects.all()
+ serializer_class = StudentSerializer
+ pagination_class = MyCursorPagination
+
+from django.contrib import admin
+from django.urls import path
+from api import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('studentapi/', views.StudentList.as_view()),
+]
+

@@ -1,0 +1,181 @@
+Inhertance(IS-A relationship) in Model classes:
+-----------------------------------------------
+1.Abstract Base Class Inhertance
+2.Multi Table Inhertance
+
+Abstract Base Class Inhertance:	(djangoapp18)
+===============================
+# Abstract Base Class
+class Employee(models.Model):
+    name=models.CharField(max_length=20)
+    address=models.CharField(max_length=20)
+    class Meta:
+        abstract = True
+#Derived class1
+class RegularEmployee(Employee):
+    salary=models.IntegerField()
+    bonus=models.IntegerField()
+    def __str__(self):
+        return self.name
+#Derived class2
+class ContractEmployee(Employee):
+    payperhour=models.IntegerField()
+    duration=models.IntegerField()
+    def __str__(self):
+        return self.name
+
+Multi Table Inhertance:(djangoapp19)
+=======================
+models.py:
+---------
+class Employee(models.Model):
+    name=models.CharField(max_length=20)
+    address=models.CharField(max_length=20)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name_plural = "Employee"
+        db_table = 'employee'
+#Derived class1
+class RegularEmployee(Employee):
+    salary=models.IntegerField()
+    bonus=models.IntegerField()
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name_plural = "RegularEmployee"
+        db_table = 'regularemployee'
+#Derived class2
+class ContractEmployee(Employee):
+    payperhour=models.IntegerField()
+    duration=models.IntegerField()
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name_plural = "ContractEmployee"
+        db_table = 'contractemployee'
+
+
+
+admin.py:
+---------
+
+from app1.models import Employee,RegularEmployee,ContractEmployee
+
+admin.site.register(Employee)
+admin.site.register(RegularEmployee)
+admin.site.register(ContractEmployee)
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Foreign Key Example:(djangoapp20)
+====================
+from django.db import models
+class Employee(models.Model):
+    name = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)
+    salary= models.FloatField()
+    class Meta:
+        # Gives the proper plural name for admin
+        verbose_name_plural = "employee"
+        db_table='employee'
+    def __str__(self):
+        return self.name
+class Dept(models.Model):
+    name = models.CharField(max_length=200)
+    empid = models.ForeignKey(Employee, default=1,on_delete=models.SET_DEFAULT)
+    exp = models.CharField(max_length=200)
+    class Meta:
+        db_table='dept'
+    def __str__(self):
+        return self.name
+
+from app1.models import Employee,Dept
+
+admin.site.register(Employee)
+admin.site.register(Dept)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Association/Aggigration(HAS-A relationship) in Model classes:
+------------------------------------------------------------
+1.One to One relationship
+2.One to Many relationship
+3.Many to Many relationship
+
+
+
+One to One Relationship :(djangoapp21)
+=========================
+
+from django.db import models
+
+class Car(models.Model):
+	reg_no = models.CharField(max_length=10)
+	owner_name = models.CharField(max_length = 100)
+
+class Engine(models.Model):
+    car = models.OneToOneField(Car,on_delete = models.CASCADE, primary_key = True)
+    engine_fuel_type = models.CharField(max_length=100)
+    engine_year = models.IntegerField()
+
+
+
+from app1.models import Car,Engine
+
+admin.site.register(Car)
+admin.site.register(Engine)
+
+
+One to Many Relationship:(djangoapp21)
+=========================
+
+class Movie(models.Model):
+    name=models.CharField(max_length=10)
+    year=models.IntegerField()
+    rating=models.FloatField()
+    def __str__(self):
+        return self.name
+
+class AudioSongs(models.Model):
+    name=models.CharField(max_length=10)
+    length=models.IntegerField()
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+		
+		
+from app1.models import Movie,AudioSongs
+
+
+admin.site.register(Movie)
+admin.site.register(AudioSongs)
+
+
+Many to Many Relationship:(djangoapp21)
+=========================
+
+
+from django.db import models
+
+
+class Student(models.Model):
+    name = models.CharField(max_length=30)
+    courses = models.ManyToManyField('Course', related_name='studentcourses')
+    def __str__(self):
+        return self.name
+
+class Course(models.Model):
+    name = models.CharField(max_length=30)
+    def __str__(self):
+        return self.name
+		
+
+from app1.models import Student,Course
+
+admin.site.register(Student)
+admin.site.register(Course)

@@ -1,0 +1,135 @@
+Frameworks used to develop Web Applications using python: 
+---------------------------------------------------------
+	Django, Pyramid, Bottle, Tornado, Flask, web2py
+	
+Q1.Standalone application vs Web application ?
+
+	Standalone applications has to be installed on local machine & provide the services to the
+	current system.
+	Ex:
+		VLC,MSOFFICE,CALC,...
+		
+	Web applications are installed on remote systems & provide the services to the any 
+	client systems throught network.
+	Ex:
+		FB,Gmail,SbiOnline,Youtube,Flipkart,..
+		
+Q2.What is Web Application  & How many types of web applications are available?
+
+	Types of web applications:
+	
+		1.Enterprise applications 	(B-2-C)
+		2.Distributed applications 	(B-2-B)
+				(Rest Frameworks)
+
+Enterprise applications:
+=========================
+	These applications provides services to customers/clients.
+	Ex:
+		gmail is a enterprise application which provides services to gmail account holder.
+
+Distributed applications:
+=========================
+	These applications provides services to One Business Application to another Business Application.
+	Ex:
+		naukri is a enterprise application which request  gmail enterprise application to create account.
+
+Note:
+	1.One B2C application can communicate with other B2C application using Web Services/API.
+	2. Interoperability
+	Here B2C application can communicate with other B2C application with irrespective of
+		1.In which language they are developed (Python/Java/C#.Net/Php/....)
+		2.In which environment/platform they are deployed (Windows/Mac/Linux/...)
+
+API:  (application program interface)
+====
+1.The main objective of web API is interoperability that is different applications 
+can communicate with each other irrespective of developed language and it's platforms.
+
+OR
+
+In a simple way methods can communication between the software components. 
+
+2.By using web services, one application in the world can communicate with any other application with
+	irrespective of language(python,java,c#.net,..) and platform (windows,mac,linux,..)
+
+3.Applications can communicate by using HTTP protocol as a common language the message format is XML or JSON.
+
+4.The most common data representation in Web API is JavaScript Object Notation that is JSON and it is 
+	a collection of key-value pair like python dictionaries.
+	
+HTML: Used to focused on how data will be displayed on browser.
+	
+		<p>501</p>
+		<p>Ajay</p>
+		<p>45000</p>
+
+	abc.html  => run on browser
+
+XML:	(Extensible MarkUp Langauge)
+
+	Used to focused on how data need to be described.
+	
+		<?XML version="1.0"?>
+		<employees>
+			<employee>
+				<empId>501</empId>
+				<empName>Ajay</empName>
+				<empSalary>45000</empSalary>
+			</employee>
+			<employee>
+				<empId>502</empId>
+				<empName>Arun</empName>
+				<empSalary>55000</empSalary>
+			</employee>
+		</employees>
+		
+		abc.xml  => run on browser
+		
+JSON:	(Java Script Object Notation)
+=====
+employees=[
+		{
+			"empId" 	: 501,
+			"empName"	:Ajay,
+			"empSalary"	:45000
+		},
+		{
+			"empId" 	: 502,
+			"empName"	:Arun,
+			"empSalary"	:55000
+		},
+	]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+Types of WebServices:
+=====================
+1.SOAP Based WebServices
+2.RESTFul WebServices
+
+
+RESTFul API:	(representational state transfer)
+============
+1.It is an architectural style.
+2.It defines several rules and  guidelines to develop the Web API.
+3.By using rest we can develop Web API very easily in concise way. 
+
+4.REST means that each unique URL is a representation of some object 
+	->We can get contents of this object by using http get 
+	->We can modify by using put or patch 
+	->We can delete by using delete 
+	->We can create by using post 
+
+5.Most of the times restful Web Services will provide data in the form of JSON because parsing is not difficult 
+ hence this type of Web Services are faster when compared with soap based Web Services.

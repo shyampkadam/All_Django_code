@@ -1,0 +1,49 @@
+Form validations:
+================
+For every django from we can apply the validations in 3 ways
+
+	1.Using clean_fieldname()
+	2.Using inbuilt validators
+	3.Using custom validators
+
+Session Management Tech / Session Tracking Mechanism:
+====================================================
+
+Scenario1:	Http Stateless behaviour
+
+		applicationname : djangoapp12
+
+
+Q1.What is Http Stateless behaviour ?
+
+Ans:
+	Http protocol is used to send request from browser  to server and send response from server to browser.
+	Http protocol cannot send info regarding client(who made request) to the server.
+	This by default nature of Http protocol.
+	
+	
+Q2.What is Http Statefull behaviour ?
+	In Http Statefull behaviour, with the help of http protocol user can send client info to server. 
+	So that server can identity that who made the request everytime.
+	
+
+Q3.How to convert http from Stateless to Statefull behaviour ?
+Ans:
+	Using following 4 techniques we can convert http from Stateless to Statefull behaviour.
+	
+	1.Sessions
+	2.Cookies
+	3.Url Rewriting
+	4.Hidden Form field
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

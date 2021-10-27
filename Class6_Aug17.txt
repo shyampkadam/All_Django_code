@@ -1,0 +1,25 @@
+Accessing static resources in Django web application:
+=====================================================
+1.Static resources are like images,css files & js files.
+2.To maintain Static resources we supposed to create "static" folder in each sub project.
+3.To use static resources in each template/html we must load them <head> tag.
+
+Sample Code:
+
+<head>
+    {% load static %}
+    <link href="{% static 'css/styles1.css'%}" rel="stylesheet">
+    <script src="{% static 'js/script1.js'%}"></script>
+</head>
+
+<body>
+        <h1>This is Doctor Home Page</h1>
+
+        <img    src="{% static 'images\one.jpg'%}"
+                height="200px"
+                width="200px"
+                alt="ONE">
+</body>
+
+application name-practo:
+========================

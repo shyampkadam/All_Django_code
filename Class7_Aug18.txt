@@ -1,0 +1,88 @@
+ORM support Django:
+===================
+ORM stands for Object Relational Mapping.
+ORM is a tool is used to convert python class object into relational db equivalent table.
+ORM is a inbuild application which is installed with Django.
+To enable ORM support we must perform Migrate related commands which are executed from
+terminal/console.
+
+	1.migrate
+	2.makemigrations
+	3.sqlmigrate
+	
+Refer:  https://docs.djangoproject.com/en/3.2/topics/migrations/
+
+
+application name-djangoapp7:
+============================
+
+(+)	djangoapp7
+		(+)djangoapp7
+			->urls.py
+			->settings.py
+		(+)doctor				(subproject/module)
+			->views.py
+			->models.py
+			->admin.py
+			(+)templates
+			(+)migrations
+
+Step1:Create your model class inside models.py
+
+from django.db import models
+class Doctor(models.Model):
+    fullName    =models.CharField(max_length=30)
+    mobileNumber=models.IntegerField()
+    password    =models.CharField(max_length=20)
+    exp         =models.IntegerField()
+    def __str__(self):
+        return self.fullName+','+str(self.mobileNumber)+','+self.password+','+str(self.exp)
+Step2:
+	python manage.py migrate
+Step3:Create super user
+	python manage.py  createsuperuser
+	
+	Username (leave blank to use 'welcome'): ambani
+	Email address: a@gmail.com
+	Password		:  appple12345
+	Password (again):	appple12345
+	Superuser created successfully.
+	
+Step4:Register your model class in admin.py file then only superuser can do read & write operations.
+
+	from django.contrib import admin
+	from doctor.models import Doctor
+	admin.site.register(Doctor)
+
+
+Step5:Convert model class into database table
+syntax:
+	python manage.py   makemigrations  <subprojectname>
+example:
+	python manage.py   makemigrations  doctor
+	
+	
+	Migrations for 'doctor':
+	doctor\migrations\0001_initial.py
+    - Create model Doctor
+
+Step6:To show SQL query which is created by migration command
+syntax:
+	python manage.py   sqlmigrate  <subprojectname>    0001
+example:
+	python manage.py   sqlmigrate   doctor   0001
+	
+	CREATE TABLE "doctor_doctor" (
+			"id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, 
+			"fullName" varchar(30) NOT NULL, 
+			"mobileNumber" integer NOT NULL, 
+			"password" varchar(20) NOT NULL, 
+			"exp" integer NOT NULL
+			);
+
+Step7:Run your application to test a table is created or not from admin interface
+
+	python manage.py 	runserver
+	
+	type this URL in browser:  http://127.0.0.1:8000/admin
+		

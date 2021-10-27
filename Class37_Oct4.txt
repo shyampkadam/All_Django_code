@@ -1,0 +1,56 @@
+Why use Authentication & Authorization?
+=======================================
+Currently our API doesn't have any restrictions on who can edit or delete Data. 
+We'd like to have some more advanced behavior in order to make sure that:
+
+	Data is always associated with a creator.
+	Only authenticated users may create Data.
+	Only the creator of a Data may update or delete it.
+	Unauthenticated requests should have full read-only access.
+	
+Authentication:
+==============
+The process of validating user is called as Authentication.
+Most of the times we can perform authentication by using username & password combination or by using tokens.
+
+DRF provides a number of authentication schemes out of the box, and also allows you to 
+implement custom schemes.
+
+	BasicAuthentication
+	TokenAuthentication
+	SessionAuthentication
+	JWT Authentication
+	Custom authentication
+
+Authorization:
+==============
+The process of validating access persmissions of user is called authorization.
+
+DRF provides a number of authorization schemes in out of the box Permission Classes like
+
+	AllowAny
+	isAuthenticated
+	IsAdminUser
+	IsAuthenticatedOrReadOnly
+	DjangoModelPersmissions
+	DjangoModelPersmissionsOrAnonReadOnly
+	
+Note:
+=====
+1.authentication module provides several classes to implement Authentication process.
+2.Authentication Basic Code
+
+	from rest_framework.authentication import BasicAuthentication
+		
+	class YourModelViewSet(viewsets.ModelViewSet):
+		#body of YourModelViewSet
+		authentication_classes = [BasicAuthentication]
+	
+3.persmissions module provides several classes to implement Authorization process.
+4.Authorization Basic Code
+
+	from rest_framework.permissions import IsAuthenticated
+	
+	class YourModelViewSet(viewsets.ModelViewSet):
+		#body of YourModelViewSet
+		permission_classes = [IsAuthenticated]

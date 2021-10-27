@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <style>
+        header
+        {
+            text-align:center;
+            background-color:skyblue;
+            color:white;
+        }
+        footer
+        {
+            text-align:center;
+            background-color:pink;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Enter email Id Here to Delete Details</h1>
+        <nav>
+             <a href="{% url 'homel'%}">Home</a>
+        </nav>
+    </header>
+    <hr>
+    <form name="searchform" action="{% url 'deleteprocess'%}" method="get">
+        <table>
+            <tr>
+                <td>
+                    <label>Email</label>
+                </td>
+                <td>
+                    <input type="email" name="n1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Delete Emp">
+                </td>
+                <td>
+                    <input type="reset" value="Clear">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br><br><br><br><br><br>
+    <hr>
+    <footer>
+        <h3>Copyright@AshokIt</h3>
+    </footer>
+</body>
+</html>

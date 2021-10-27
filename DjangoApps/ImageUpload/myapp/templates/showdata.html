@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Person Data</title>
+</head>
+<body>
+<center>
+    <h1 style="color:pink">Show Person Data</h1>
+    <hr>
+    <form method="" action="" enctype="multipart/form-data">
+        <table border="1">
+            <tr>
+                <th>Id</th>
+            <th>Person Name</th>
+            <th>Description</th>
+            <th>Photo</th>
+            </tr>
+            {% for p in person%}
+            <tr>
+                <td>{{p.id}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.description}}</td>
+                <td><img src="{{p.photo.url }}" height="40" width="40" border="1"/></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </form>
+   <a href="{% url 'insert' %}">Go to Add Profiles</a>
+</center>
+</body>
+</html>

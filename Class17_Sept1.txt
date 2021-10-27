@@ -1,0 +1,94 @@
+Session Management Tech / Session Tracking Mechanism:
+====================================================
+Using these mechanisms server can remember client info at server side.
+
+	1.Sessions
+	2.Cookies
+	3.Url Rewriting
+	4.Hidden Form field
+	
+	
+Scenario1:	Http Stateless behaviour
+
+		applicationname : djangoapp12
+
+1.Sessions:
+===========
+A session is a interval time in which client & server can communicate with each other.
+For every session a unique session id gets created & saved into DB/File/Cache.
+During session, all client activities can be tracked by that session id only.
+
+
+Ex:
+	gmail signin & signout
+	netbanking signin & signout
+	
+Q1. How to set data into the session ?
+
+		request.session['key']=value
+		
+Q2. How to get data from the session ?
+
+		variable=request.session['key']
+
+Q3.How to remove data with the session ?
+
+		variable=request.session['key']
+		del variable
+
+Example Application1:
+
+		applicationname : djangoapp12
+
+Example Application2:Multi form submission
+
+		applicationname : djangoapp13
+	
+	
+
+2.Cookies:
+==========
+Def:
+	A cookie is piece of memory in browser to username,pswd,..   which are stored by server.
+	
+
+Q1. How to set data into the cookie ?
+		//Creating cookie object
+		cookieobj=Httpresponse()
+		//Add your data into cookie
+		cookieobj.set_cookie(key,value)
+		
+Q2. How to get data from the cookie ?
+
+		valueofcookie=request.COOKIES['key']
+
+Q3.How to remove data with the session ?
+
+		valueofcookie=request.COOKIES['key']
+		del valueofcookie
+
+Example Application1:
+
+		applicationname : djangoapp12
+
+Example Application2:Multi form submission
+
+		applicationname : djangoapp13
+	
+	
+Note:
+=====
+1.To expire a session 	:	request.session.get_expiry(SEC)
+2.To expire a cookie  	:	cookieobj.set_cookie(key,value,max_age=SEC)
+
+
+Types of cookies:
+
+	1.Impersistent cookie	:	As long as browser closed then cookie is deleted from browser
+	2.Persistent cookie		:	Add "max_age=SEC" argument while sending cookie objet to browser
+	
+	
+
+
+4.Hidden Form field:
+====================

@@ -1,0 +1,18 @@
+Django project directory structure:
+==================================
+
+
+Url patterns in urls.py:
+========================
+
+Creating view in django project:
+--------------------------------
+
+	-> Right Click on sub directory 
+	-> new 
+	-> python file 
+	-> name=myviews 
+	-> Click enter
+	
+Register view into urls.py:
+---------------------------

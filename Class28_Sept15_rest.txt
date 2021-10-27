@@ -1,0 +1,116 @@
+1.django-admin startproject restapi
+2.cd restapi
+3.py manage.py startapp app1
+4.install app1 in settings.py
+INSTALLED_APPS = [
+    ...
+    'app1',
+]
+5.models.py
+from django.db import models
+class Employee(models.Model):
+    email=models.CharField(primary_key=True,max_length=40)
+    password=models.CharField(max_length=40)
+    fullName=models.CharField(max_length=40)
+    city=models.CharField(max_length=40)
+    salary=models.FloatField(default=0.0)
+    def __str__(self):
+        return self.email+","+self.fullName
+    class Meta:
+        db_table='employee'
+
+6.admin.py
+from django.contrib import admin
+from app1.models import Employee
+admin.site.register(Employee)
+
+7.python manage.py makemigrations
+8.python manage.py migrate
+9.python manage.py createsuperuser
+10.python manage.py runserver
+11.Add few records through admin interface
+
+
+12.pip install djangorestframework==3.11
+
+13.install rest_framework in settings.py
+
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+
+14.app1/serializers.py
+
+from rest_framework import serializers
+from app1.models import Employee
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Employee
+        fields = ('email', 'password','fullName','city','salary')
+		
+15.app1/views.py
+
+from rest_framework import viewsets
+from .serializers import EmployeeSerializer
+from .models import Employee
+class EmployeeViewSet(viewsets.ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+	
+	
+16.app1/urls.py
+
+from django.urls import include, path
+from rest_framework import routers
+from . import views
+
+router = routers.DefaultRouter()
+router.register(r'employees', views.EmployeeViewSet)
+
+urlpatterns = [
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+]
+
+
+17.urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('app1.urls')),
+ ]
+ 
+18.python manage.py runserver
+
+19.http://127.0.0.1:8000/
+
+20.http://127.0.0.1:8000/1
+
+
+"http://127.0.0.1:8000/employees/"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reference:
+
+https://www.django-rest-framework.org/tutorial/quickstart/#pagination
+https://data-flair.training/blogs/django-rest-framework/

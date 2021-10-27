@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        header
+        {
+            text-align:center;
+            background-color:skyblue;
+            color:white;
+        }
+        footer
+        {
+            text-align:center;
+            background-color:pink;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Employee Details Page</h1>
+        <nav>
+            <a href="{% url 'homel'%}">Home</a>|
+        </nav>
+    </header>
+    <hr>
+
+    <table align="center" border="1px" cellpadding="5px" cellspacing="5px">
+        <tr>
+            <th>Email</th>
+            <td>{{e.email}}</td>
+        </tr>
+        <tr>
+               <th>Password</th>
+            <td>{{e.password}}</td>
+        </tr>
+        <tr>
+             <th>Full Name</th>
+             <td>{{e.fullName}}</td>
+        </tr>
+        <tr>
+             <th>City</th>
+             <td>{{e.city}}</td>
+        </tr>
+        <tr>
+            <th>Salary</th>
+            <td>{{e.salary}}</td>
+        </tr>
+
+    </table>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <hr>
+    <footer>
+        <h3>Copyright@AshokIt</h3>
+    </footer>
+</body>
+</html>

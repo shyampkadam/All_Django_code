@@ -1,0 +1,109 @@
+
+DRF-Filtering:
+==============
+We can implements Search/Filter operations in following 2 ways
+
+	1.Plain Vanilla Filtering					: restapidemo17
+	2.By Using Django API 						: restapidemo17  (DjangoFilterBackend)
+
+============================================================
+Plain Vanilla Filtering
+============================================================
+from django.db import models
+
+# Create your models here.
+class Student(models.Model):
+ name = models.CharField(max_length=50)
+ roll = models.IntegerField()
+ city = models.CharField(max_length=50)
+ passby = models.CharField(max_length=50)
+ 
+from django.contrib import admin
+from .models import Student
+# Register your models here.
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+ list_display = ['id', 'name', 'roll', 'city', 'passby']
+ 
+
+from rest_framework import serializers
+from .models import Student
+
+class StudentSerializer(serializers.ModelSerializer):
+ class Meta:
+  model = Student
+  fields = ['id', 'name', 'roll', 'city', 'passby']
+  
+from django.shortcuts import render
+from .serializers import StudentSerializer
+from rest_framework.generics import ListAPIView
+from .models import Student
+# Create your views here.
+
+class StudentList(ListAPIView):
+ queryset = Student.objects.all()
+ serializer_class = StudentSerializer
+ def get_queryset(self):
+  user = self.request.user
+  return Student.objects.filter(passby=user)
+ 
+ from django.contrib import admin
+from django.urls import path
+from api import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('studentapi/', views.StudentList.as_view()),
+]
+
+============================================================
+Filtering by using Django REST Framework  API
+============================================================
+
+from django.db import models
+
+# Create your models here.
+class Student(models.Model):
+ name = models.CharField(max_length=50)
+ roll = models.IntegerField()
+ city = models.CharField(max_length=50)
+ passby = models.CharField(max_length=50)
+ 
+from django.contrib import admin
+from .models import Student
+# Register your models here.
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+ list_display = ['id', 'name', 'roll', 'city', 'passby']
+ 
+from rest_framework import serializers
+from .models import Student
+
+class StudentSerializer(serializers.ModelSerializer):
+ class Meta:
+  model = Student
+  fields = ['id', 'name', 'roll', 'city', 'passby']
+  
+from django.shortcuts import render
+from .serializers import StudentSerializer
+from rest_framework.generics import ListAPIView
+from .models import Student
+from django_filters.rest_framework import DjangoFilterBackend
+# Create your views here.
+
+class StudentList(ListAPIView):
+ queryset = Student.objects.all()
+ serializer_class = StudentSerializer
+ filter_backends = [DjangoFilterBackend]
+ # filterset_fields = ['city']
+ filterset_fields = ['name','city']
+
+ 'rest_framework',
+    'django_filters',
+    'app1'
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_FILTER_BACKENDS':['django_filters.rest_framework.DjangoFilterBackend']
+# }
+

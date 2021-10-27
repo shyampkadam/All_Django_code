@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <style>
+        header
+        {
+            text-align:center;
+            background-color:skyblue;
+            color:white;
+        }
+        footer
+        {
+            text-align:center;
+            background-color:pink;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Employee Registration Page</h1>
+        <nav>
+             <a href="{% url 'homel'%}">Home</a>|
+            <a href="#">SignUp</a>
+        </nav>
+    </header>
+    <hr>
+    <form name="regform" action="{% url 'empregprocessl'%}" method="get">
+        <table>
+            <caption>Employee SignUp Page</caption>
+            <tr>
+                <td>
+                    <label>Email</label>
+                </td>
+                <td>
+                    <input type="email" name="n1">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Password</label>
+                </td>
+                <td>
+                    <input type="password" name="n2">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Full Name</label>
+                </td>
+                <td>
+                    <input type="text" name="n3">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>City</label>
+                </td>
+                <td>
+                    <input type="text" name="n4">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Salary</label>
+                </td>
+                <td>
+                    <input type="number" name="n5">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <input type="submit" value="Register">
+                </td>
+                <td>
+                    <input type="reset" value="Clear">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br><br><br><br><br><br>
+    <hr>
+    <footer>
+        <h3>Copyright@AshokIt</h3>
+    </footer>
+</body>
+</html>

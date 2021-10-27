@@ -1,0 +1,28 @@
+Q1.In Django how many ways we can prepare views ?
+
+Ans:
+	We can prepare views in 2 ways
+	
+		1.Using functions		(FunctionBasedViews)
+		2.Using class 			(ClassBasedViews)
+		
+ClassBasedViews:
+================
+	applicationname : djangoapp15
+
+Note:
+1.For select operation on Model we always recommended to use CBV.
+2.For update,insert & delete operations on Model we always recommended to use FBV.
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,122 @@
+Upload a CSV file in Django:(djangapp24)
+------------------------------
+
+models.py:
+=========
+from django.db import models
+class Profile(models.Model):
+    name = models.CharField(max_length=150)
+    email = models.EmailField(blank=True)
+    address = models.CharField(max_length=50)
+    phone = models.CharField(max_length=150,unique=True)
+    profile = models.TextField()
+    def __str__(self):
+        return self.name
+		
+admin.py:
+========
+
+from app1.models import Profile
+admin.site.register(Profile)
+
+views.py:
+========
+import csv, io
+from django.shortcuts import render
+from django.contrib import messages
+from .models import Profile
+
+
+def profile_upload(request):
+    data = Profile.objects.all()
+    if request.method == "GET":
+        return render(request, 'profile_upload.html')
+    csv_file = request.FILES['file']
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request, 'THIS IS NOT A CSV FILE')
+    data_set = csv_file.read().decode('UTF-8')
+    io_string = io.StringIO(data_set)
+    next(io_string)
+    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+        created = Profile.objects.update_or_create(
+        name=column[0],
+        email=column[1],
+        address=column[2],
+        phone=column[3],
+        profile=column[4]
+        )
+    return render(request, 'profile_upload.html')
+
+
+profile_upload.html:
+====================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div>
+                <strong>{{message|safe}}</strong>
+            </div>
+        {% endfor %}
+    {% else %}
+    {{order}}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label> Upload a file</label>
+        <input type="file" name="file">
+        <br><br>
+        <button type="submit">Upload</button>
+    </form>
+    {% endif %}
+    {% for profile in profiles %}
+        {{profile.name}}
+    {% endfor %}
+</body>
+</html>
+
+
+urls.py:
+========
+ 
+ 
+from django.contrib import admin
+from django.urls import path
+from app1.views import profile_upload
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('upload-csv/', profile_upload, name="profile_upload"),
+]
+==============================================================================
+
+How to Upload Image with Django:(ImageUpload)
+-------------------------------
+Image uploading is one of the main features of any modern web-applications. 
+It allows the user to upload the image or picture on the server. 
+Fortunately, Django provides the simple procedure of working with 
+the images especially uploading the images or pictures. 
+Using this, we can create a beautiful web application where 
+users can upload images with captions.
+
+
+Most of the web applications deal with the file or images, Django provides the two model fields that allow the 
+user to upload the images and files. 
+
+These fields are FileField and ImageField; 
+basically ImageField is a specialized version of FileField that uses Pillow to confirm that file is an image. 
+
+Let's see the following example of creating models.
+
+We don't need to create the media directory manually; 
+it will be automatically created when we upload an image.
+
+First of all, we need to install the pillow library, which helps work 
+with the images. We can install it using the following pip command.
+
+
+pip install Pillow  

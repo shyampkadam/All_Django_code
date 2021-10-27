@@ -1,0 +1,47 @@
+Project Name: djangoapp17
+	Application Name: mycrudapp
+			Model Name: Students
+	
+->Create html form by using ModelForm class
+->Creating URL Patterns using path() function
+->Url Rewriting
+->MySql DB server used to store data into DB
+===========================================================
+DB operations using Model class:
+================================
+	1.Creating table	:	through migrations commands
+	2.Inserting rows	:	By calling save() method
+	3.Updating rows 	:   BY calling save() method 
+	4.Deleting rows 	:	By calling delete() method
+	
+	5.Retriving rows 	:	By calling all() method
+	
+	
+R1: Print all records from Student table			(All columns info)
+
+	SQL					:select * from students
+		
+	Model class method	:Students.obejcts.all()
+	
+R2: Print student names & marks from Student table  (Partial columns info)
+
+	SQL					:select name,marks from students
+		
+	Model class method	:res1=Students.objects.all().values_list('name','marks')
+	
+R3: Print all students details whose marks above 500
+
+	SQL					:select * from students where marks > 500
+		
+	Model class method	:res1=Students.objects.filter(marks__gt = 500)
+	
+	Relation operators:	gt,lt,gte,lte,eq,
+
+R4: Print highest secured marks from student table
+R5: Print lowest secured marks from student table
+R6: Print sum of marks from student table
+R7: Print avg marks from student table
+
+	Aggragate functions:  min(), max() , sum() , avg() & count()
+
+	Ex:	Students.objects.all().aggregate(min('marks'))

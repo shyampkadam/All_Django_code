@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT DATA</title>
+</head>
+<body bgcolor="pink">
+<center>
+    <h2 style="color:green">EDIT STUDENT INFORMATION</h2>
+    <hr>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+    {{form.as_table}}
+        <tr>
+            <td>
+                <input type="submit" value="Update" action="/edit/{{form.id}}">
+            </td>
+        </tr>
+</table>
+</form>
+    </center>
+</body>
+</html>

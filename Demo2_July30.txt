@@ -1,0 +1,15 @@
+Django with Project Demo Session2:
+==================================
+Project related tools:
+---------------------
+
+1.Project documentation	tools	:	Confulence
+2.Project management tool		: 	Jira
+3.IDE							: 	Pycharm,Atom
+4.Repository tool				:   Git,Bitbucket
+5.Build tool					: 	Pybuilder
+6.Logging tool					:	PyLogger info(),debug(),trace(),..
+7.Testing tool					:   Pytest,PyUnitTest
+8.Source code quality checker	:	Linter
+9.API testing 					:	Postman
+10.Project deployment tool		:	Jenkins

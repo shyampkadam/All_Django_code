@@ -1,0 +1,89 @@
+
+Types of WebServices:
+=====================
+To prepare APIs we used following any one of 2 WebServices
+
+1.SOAP Based WebServices
+2.RESTFul WebServices
+
+
+
+1.SOAP Based WebServices:(Simple Object Access Protocol)
+=========================
+	->SOAP is an XML based protocol for accessing web services.
+	->To descrobe SOAP based web services we have to use "WSDL".
+	->SOAP is is more secured 
+	->SOAP follows XML format of data, hence we need xml parsers & compilers(SAX/DOM) to format the XML data.
+	->Difficult to prepare & maintain the SOAP WebServices
+	->Required more bandwidth to carry xml data in network
+
+2.RESTFul API:	(representational state transfer)
+==============
+1.It is an architectural style.
+2.It defines several rules and  guidelines to develop the Web API.
+3.By using rest we can develop Web API in concise way. 
+
+4.REST means that each unique URL is a representation of some object 
+
+	->We can get contents of this object by using http get 
+	->We can modify by using put or patch 
+	->We can delete by using delete 
+	->We can create by using post 
+
+5.Most of the times restful Web Services will provide data in the form of JSON because parsing is not difficult 
+ hence this type of Web Services are faster when compared with soap based Web Services.
+ 
+
+
+		CRUD: Django ORM methods												SQL					RestFul http methods
+
+def savestudent(request):
+	ob=Student(fn=,uid=,pswd=,city=,age=)
+	ob.save()								:  	Inserting object into DB		insert query		POST
+	
+def findallstudents(request):
+	students=Student.objects.all()			:	Fecthing all objects from DB	select query		GET
+	
+def findstudentbyid(request,userid):
+	student=Student.objects.get(uid=userid)	:	Fecthing object from DB			select query		GET
+
+def updatestudent(request):
+	student=Student.objects.get(uid=userid)	
+	student.fn=
+	student.pswd=
+	student.city=
+	student.age=
+	student.save()							:	Updating existing object inside DB	update query	PUT/PATCH
+
+def deletestudent(request):
+	student=Student.objects.get(uid=userid)
+	student.delete()						:	Deleting existing object inside DB	delete query	DELETE
+	
+	
+================================================================================
+
+def  show1(v1):
+	print(v1)
+	print(type(v1))
+	
+show1(10)
+show1(10.5)
+show1(10+3j)
+show1('Hello')
+show1(True)
+
+def  show2(*v2):
+	print(v2)
+	print(type(v2))		#tuple
+	
+
+show2(10,20,30)
+show2(1.1,1.2)
+
+
+def  show3(**v3):
+	print(v3)
+	print(type(v3))		
+	
+	
+show3(eid=101,ename='Ajay',salary=45000)

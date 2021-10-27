@@ -1,0 +1,187 @@
+Session Management Tech / Session Tracking Mechanism:
+====================================================
+Using these mechanisms server can remember client info at server side.
+
+	1.Sessions
+	2.Cookies
+	3.Url Rewriting
+	4.Hidden Form field
+	
+	
+Scenario1:	Http Stateless behaviour
+
+		applicationname : djangoapp12
+
+1.Sessions:
+===========
+A session is a interval time in which client & server can communicate with each other.
+For every session a unique session id gets created & saved into DB/File/Cache.
+During session, all client activities can be tracked by that session id only.
+
+
+Ex:
+	gmail signin & signout
+	netbanking signin & signout
+	
+Q1. How to set data into the session ?
+
+		request.session['key']=value
+		
+Q2. How to get data from the session ?
+
+		variable=request.session['key']
+
+Q3.How to remove data with the session ?
+
+		variable=request.session['key']
+		del variable
+
+Example Application1:
+
+		applicationname : djangoapp12
+
+Example Application2:Multi form submission
+
+		applicationname : djangoapp13
+	
+	
+
+2.Cookies:
+==========
+Def:
+	A cookie is piece of memory in browser to username,pswd,..   which are stored by server.
+	
+
+Q1. How to set data into the cookie ?
+		//Creating cookie object
+		cookieobj=Httpresponse()
+		//Add your data into cookie
+		cookieobj.set_cookie(key,value)
+		
+Q2. How to get data from the cookie ?
+
+		valueofcookie=request.COOKIES['key']
+
+Q3.How to remove data with the session ?
+
+		valueofcookie=request.COOKIES['key']
+		del valueofcookie
+
+Example Application1:
+
+		applicationname : djangoapp12
+
+Example Application2:Multi form submission
+
+		applicationname : djangoapp13
+	
+	
+Note:
+=====
+1.To expire a session 	:	request.session.get_expiry(SEC)
+2.To expire a cookie  	:	cookieobj.set_cookie(key,value,max_age=SEC)
+
+
+Types of cookies:
+
+	1.Impersistent cookie	:	As long as browser closed then cookie is deleted from browser
+	2.Persistent cookie		:	Add "max_age=SEC" argument while sending cookie objet to browser
+	
+
+4.Hidden Form field:
+====================
+In case of Hidden Form Field a hidden (invisible) textfield is used for maintaining the state of an user.
+In such case, we store the information in the hidden field and get it from another server.
+This approach is better if we have to submit form in all the pages and we don't want to depend on the browser.
+
+syntax:
+
+	<input type="hidden" name="name1" value="Chanti">  
+
+
+Advantages:
+
+	->It will always work whether cookie is disabled or not(browser independent)..
+	
+Disadvantages:
+
+	->Extra form submission is required on each pages.
+	->Only textual information can be used.
+
+
+
+
+
+
+
+
+3 . URL Rewriting:
+=================
+In URL rewriting, we append a token or identifier to the URL of the next resource. 
+
+We can send parameter name/value pairs using the following format:
+
+url name1=value1 name2=value2  .....
+
+Advantages:
+
+	->It will always work whether cookie is disabled or not (browser independent).
+	->Extra form submission is not required on each pages.
+	
+Disadvantages:
+
+	->It will work only with links.
+	->It can send Only textual information.
+	
+==================================================================
+
+Connecting Django application with MySql Db Server:
+===================================================
+
+Step1: Download MySql Db Server & Install it.
+Step2: Create your database in MySql Db Server.
+Step3: Create django application with a specific model class
+Step4: Install MySql client libraries/packages for current project using pip command
+		pip install mysqlclient
+Step5: Change DB properties to MySql Db Server inside settings.py
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'DBNAME',
+        'USER': 'root',
+        'PASSWORD': 'DBPSWD',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+Step6: Perform migarte operations
+
+	applicationname : djangoapp14
+-------------------------------------------------------------------
+Q1.In Django how many ways we can prepare views ?
+
+Ans:
+	We can prepare views in 2 ways
+	
+		1.Using functions		(FunctionBasedViews)
+		2.Using class 			(ClassBasedViews)
+		
+ClassBasedViews:
+================
+	applicationname : djangoapp15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

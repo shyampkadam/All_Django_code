@@ -1,0 +1,39 @@
+Working with migrations:
+========================
+AppName			:  	djangoapp8
+SubProjectName	:	studentdata
+ModelName		:	Student with fullname,city,age,percantage
+
+
+
+1.Insert one row/object into student table
+
+	from studentdata.models  import  Student
+	
+	student1=Student(fullName='K ajay',city='Hyd',age=21,percentage=78.95)
+	student1.save()			#Internally save() method execute SQL insert query 
+	
+	student2=Student(fullName='T Vinay',city='Pune',age=25,percentage=68.95)
+	student2.save()
+	
+	
+	
+2.Reading all rows/objects from model class/table
+	
+	SQL:  select * from <tablename>
+	
+	Student.objects.all()
+	
+	Output:   <Student: K ajay,Hyd,21>, <Student: T Vinay,Pune,25>]
+	
+3.Reading a specific object from all objects
+
+	SQL:  select * from <tablename> where id = value;
+	
+	obj1=Student.objects.get(id=1)
+	obj1
+	obj1.id
+	obj1.pk
+	obj1.fullName
+	obj1.age
+	

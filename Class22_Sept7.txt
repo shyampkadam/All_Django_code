@@ -1,0 +1,125 @@
+DB operations using Model class methods / ORM methods:
+======================================================
+	1.Creating table	:	through migrations commands
+	2.Inserting rows	:	By calling save() method
+	3.Updating rows 	:   BY calling save() method 
+	4.Deleting rows 	:	By calling delete() method
+	
+	5.Retriving rows 	:	By calling all() method
+	
+	
+R1: Print all records from Student table			(All columns info)
+
+	SQL					:select * from students
+		
+	Model class method	:Students.obejcts.all()
+	
+R2: Print student names & marks from Student table  (Partial columns info)
+
+	SQL					:select name,marks from students
+		
+	Model class method	:res1=Students.objects.all().values_list('name','marks')
+	
+R3: Print all students details whose marks above 500
+
+	SQL					:select * from students where marks > 500
+		
+	Model class method	:res1=Students.objects.filter(marks__gt = 500)
+	
+	Relation operators:	gt,lt,gte,lte,eq
+
+R4: Print highest secured marks from student table
+R5: Print lowest secured marks from student table
+R6: Print sum of marks from student table
+R7: Print avg marks from student table
+
+	Aggragate functions:  Min(), Max() , Sum() , Svg() & Count()
+Note:
+Above all aggregate functions are belongs to "django.db.models" module 
+
+	Ex:	Students.objects.all().aggregate(Min('marks'))
+	
+R8: Print particular emailid details
+	
+		SQL		: select * from students where emailid='ajay@gmail.com'
+		
+		Method	: res1=Students.objects.filter(email='ajay@gmail.com')	
+
+Login Operation:
+				res1=Students.objects.filter(email='ajay@gmail.com',password='apple')	
+				
+Logical Operator:	(and,or,not)
+Logical AND:
+============
+1.Using & operator
+				r=Students.objects.filter(email='ajay@gmail.com') & Students.objects.filter(password='apple')
+				
+2.Using Q class 
+			This Q class belongs to "django.db.models" module.		
+				
+				r=Students.objects.filter(   Q(email='ajay@gmail.com')  &  Q(password='apple')   )
+
+Logical OR:
+============			
+1.Using | operator
+				r=Students.objects.filter(email='ajay@gmail.com') | Students.objects.filter(password='apple')
+				
+2.Using Q class 
+			This Q class belongs to "django.db.models" module.		
+				
+				r=Students.objects.filter(   Q(email='ajay@gmail.com')  |  Q(password='apple')   )
+				
+				
+Sorting:
+=========
+	SQL			:  select * from students order by address
+	
+	Method 		:   Students.objects.all().order_by('address')
+================================================================================================================
+
+1.Inheritance in Django Models
+2.Relationships between Django Models
+
+================================================================================================================
+
+	Promotions								:	type,name,startdate,enddate,type(flat/percentage)			
+	product promotions(Promotions	)   	:  	productname...	
+	cart  promotions(Promotions	)  			:	threshold....
+	category promotions(Promotions	)  		:	catname....
+
+Abstract Base Class Model Inheritance:
+--------------------------------------
+CASE1:  Only child models gets created  & i want to restrict to do not create model for parent
+
+Employee   		(make this class as Abstract Class)
+	name
+	address
+
+RegularEmployee(Employee)
+	salary
+	bonus
+
+ContractEmployee(Employee)
+	payperhour
+	duration
+
+	ApplicationName :  djangoapp18
+
+Multi Table Inheritance:
+------------------------
+CASE2:  Three models has to create 
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------
+Relationships in Python:
+=======================
+	IS-A relationship	(Inheritance)
+	HAS-A relationship	(Aggragatation)
+	

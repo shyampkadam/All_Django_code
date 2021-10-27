@@ -1,0 +1,23 @@
+Performing CRUD operation using MVT layers:
+===========================================
+AppName			:  	djangoapp9
+SubProjectName	:	empdata
+ModelName		:	Employee with email,pswd,fullname,city,salary
+
+DirectoryStructure:
+
+(+)djangoapp9
+
+	(+)djangoapp9
+		->settings.py
+		->urls.py
+		
+	(+)empdata
+		(+)migrations
+		->views.py
+		->models.py
+		->admin.py
+		(+)templates
+			emphome.html
+	
+	->manage.py

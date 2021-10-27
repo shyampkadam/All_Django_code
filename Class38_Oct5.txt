@@ -1,0 +1,133 @@
+
+Basic Authentication test using curl:
+
+curl --user admin:admin http://localhost:8000/studentapi/
+==================================================================
+
+Basic Authentication test using httpie:
+
+
+http --default-scheme http http://localhost:8000/studentapi/ -a admin:admin
+
+==================================================================
+
+isAuthenticated:
+=================
+The isAuthenticated permission class will deny permissions to any unauthorized user.
+Only authenticated useres are allowed to access the endpoints.
+
+This permission is suitable if we want our API to be accessible by only registered users.
+
+
+AllowAny:
+=========
+    This isn't strictly required, since you could use an empty
+    permission_classes list, but it's useful because it makes the intention
+    more explicit.
+
+
+Token based Authentication:
+===========================
+
+
+==================================================================
+					TokenAuthentication <=> restapidemo11
+==================================================================
+
+settings.py:
+
+INSTALLED_APPS = [
+		...
+		# Third-Party Apps
+		'rest_framework',
+		'rest_framework.authtoken',
+		# (Your project's apps)
+		'app1',
+		]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  
+    ],
+}
+
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py createsuperuser --username chanti --email chanti@gmail.com
+
+python manage.py drf_create_token chanti
+
+Generated token 09ec8a0850e6862dfa7145cf7088b196d5dec411 for user chanti
+
+python manage.py runserver
+
+TESTING:
+=========
+----------------------------------------------------------------------------
+Approach1: Httpie
+----------------------------------------------------------------------------
+http http://localhost:8000/studentapi/ "Authorization:Token 09ec8a0850e6862dfa7145cf7088b196d5dec411"
+
+
+----------------------------------------------------------------------------
+Approach2: Curl
+----------------------------------------------------------------------------
+
+curl http://localhost:8000/studentapi/ -H "Authorization:Token 09ec8a0850e6862dfa7145cf7088b196d5dec411"
+
+----------------------------------------------------------------------------
+Approach3: Python Client App
+----------------------------------------------------------------------------
+
+import requests
+url = 'http://localhost:8000/studentapi/'
+headers = {
+'Authorization': 'Token 09ec8a0850e6862dfa7145cf7088b196d5dec411'
+}
+r = requests.get(url, headers=headers)
+print(r.json())
+----------------------------------------------------------------------------
+Approach4: Postman
+----------------------------------------------------------------------------
+Get
+
+	http://127.0.0.1:8000/studentapi/
+
+Headers
+
+	Key			=	Authorization
+	Value		=	Token 09ec8a0850e6862dfa7145cf7088b196d5dec411
+	
+	
+	
+	
+	
+	
+--------------------------------------------------------------------------
+If client want to know his token, then do the following changes in url.py & hit the below endpoint.
+
+Urls.py:
+========
+	
+	from rest_framework.authtoken.views import obtain_auth_token 
+	
+	path('token-auth/', obtain_auth_token, name='api_token_auth'), 
+	
+	http post http://127.0.0.1:8000/token-auth/ username=chanti password=chanti
+
+--------------------------------------------------------------------------
+
+
+
+
+
+Generated token 9f0f9561cc5c46d1021bc6ada98e008d6a1c95ba for user chanti@123
+
+
+
+
+
+
+

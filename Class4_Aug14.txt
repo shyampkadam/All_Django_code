@@ -1,0 +1,14 @@
+Extending templates:
+=====================
+base.html
+   header
+   footer
+
+
+home.html
+about.html
+contact.html		
+
+
+application name-djangoapp6:
+============================

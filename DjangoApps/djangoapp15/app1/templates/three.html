@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>All Products INfo</h1>
+ <table align="center" border="1px" cellpadding="5px" cellspacing="5px">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Cost</th>
+        </tr>
+        {% for p in product_list %}
+        <tr>
+            <td>{{p.pid}}</td>
+             <td>{{p.pname}}</td>
+             <td>{{p.pcost}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+_______________________________________________________________________
+
+Creating html forms in Django application:
+==========================================
+
+
+application name-djangoapp5:
+============================
+
+DOM => Document Object Model
+
+Each tag in html document except <head> part is treated as DOM.
+
+Ex1:	<html>   tag is root dom
+Ex2:    <body>	tag is child dom
+

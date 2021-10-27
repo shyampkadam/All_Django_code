@@ -1,0 +1,67 @@
+========================================================================
+DjangoFilterBackend
+	This class belongs to django_filters.rest_framework module
+
+SearchFilter class:
+
+	This class belongs to rest_framework.filters module
+========================================================================
+
+
+http://127.0.0.1:8000/books/?search=YK
+http://127.0.0.1:8000/books/?search=5010
+
+Case1:
+
+	search_fields = ('isbn',)
+
+	http://127.0.0.1:8000/books/?search=5
+
+	It returns all books where isbn contains 5
+
+
+Case2:
+
+	search_fields = ('=isbn',)
+
+	http://127.0.0.1:8000/books/?search=5010
+
+	It returns all books where isbn is exactly to 5010
+
+Case3:
+
+	search_fields = ('^isbn',)
+
+	http://127.0.0.1:8000/books/?search=5
+
+	It returns all books where isbn starts with 5
+========================================================================
+
+OrderingFilter class:
+
+	This class belongs to rest_framework.filters module
+	
+Case1:Default Ordering => NO specification of ordering_fields i.e All Fields you can sort
+
+	http://127.0.0.1:8000/books/?order=isbn
+	http://127.0.0.1:8000/books/?order=-isbn
+	http://127.0.0.1:8000/books/?order=author
+	http://127.0.0.1:8000/books/?order=pub_date
+
+Case2: Customized Ordering 
+
+	ordering_fields = ('isbn',)
+	
+	http://127.0.0.1:8000/books/?ordering=isbn
+	http://127.0.0.1:8000/books/?ordering=-isbn
+	
+Case3: SearchFilter + OrderingFilter
+	search_fields = ('author',)
+	ordering_fields = ('pub_date',)
+		
+	http://127.0.0.1:8000/books/?search=YK&ordering=pub_date
+	
+========================================================================
+
+
+

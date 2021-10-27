@@ -1,0 +1,64 @@
+Refer:	https://docs.python.org/3/library/logging.html
+
+
+
+
+Debug 	: These are used to give Detailed information, typically of interest only when diagnosing problems.
+Info 	: These are used to Confirm that things are working as expected
+Warning : These are used an indication that something unexpected happened, or indicative of some problem in the near future
+Error 	: This tells that due to a more serious problem, the software has not been able to perform some function
+Critical : This tells serious error, indicating that the program itself may be unable to continue running
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#DIWEC
+
+import logging
+logger=logging.getLogger()
+logger.debug("debug msg")
+logger.info("info msg")
+logger.warning("warn msg")
+logger.error("error msg")
+logger.critical("critical msg")
+-----------------------------------------------------------------
+logging.basicConfig(format='%(asctime)s %(message)s',level=logging.DEBUG)
+-----------------------------------------------------------------
+logging.basicConfig(filename="file1.log",format='%(asctime)s %(message)s',level=logging.DEBUG)
+-----------------------------------------------------------------
+logging.basicConfig(filename="file1.log",format='%(asctime)s %(message)s',filemode='a',level=logging.DEBUG)
+-----------------------------------------------------------------
+logging.basicConfig(filename="file1.log",format='%(asctime)s %(message)s',filemode='w',level=logging.DEBUG)
+-----------------------------------------------------------------
+FORMAT = '%(asctime)s :%(msecs)d %(module)s %(funcName)s %(lineno)d %(levelno)d %(levelname)s : %(message)s '
+-------------------------------------------------------------------
+import logging
+name = 'John'
+logging.error('%s raised an error', name)
+-------------------------------------------------------------------
+import logging
+name = 'John'
+logging.error(f'{name} raised an error')
+------------------------------------------------------------------
+import logging
+a = 5
+b = 0
+try:
+  c = a / b
+except Exception as e:
+  logging.error("Exception occurred", exc_info=True)
+  
+

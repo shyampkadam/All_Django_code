@@ -1,0 +1,96 @@
+Code1:Basic Example
+
+
+middleware.py
+=============
+class MiddleWare1(object):
+    def __init__(self,get_response):
+        self.get_response=get_response
+    def __call__(self, request):
+        print('Before request processing to view')
+        response=self.get_response(request)
+        print('After response processing from view')
+        return  response
+
+settings.py
+============
+'app1.middleware.MiddleWare1'
+
+views.py
+========
+def home_view(request):
+    print('Inside view: during request processing')
+    return HttpResponse('<h1>WELCOME to View</h1>')
+----------------------------------------------------------------------------
+Code2:Handling Exceptions using MiddleWare
+
+
+middleware.py
+=============
+from django.http import HttpResponse
+class ExceptionHanlderMiddleWare(object):
+    def __init__(self,get_response):
+        self.get_response=get_response
+    def __call__(self, request):
+        return self.get_response(request)
+    def process_exception(self,request,exception):
+        return HttpResponse("<h1>Having Issue at server side</h1>")
+
+
+settings.py
+============
+'app1.middleware.ExceptionHanlderMiddleWare'
+
+views.py
+========
+def home_view(request):
+    print(100/2)
+    print(100 / 0)
+    return HttpResponse('<h1>WELCOME</h1>')
+	
+	
+	
+----------------------------------------------------------------------------
+
+URL Patterns in Project Level Vs URL Patterns in Application Level
+===================================================================
+
+app1/views.py
+==============
+def welcome_view(request):
+    return HttpResponse('<h1>WELCOME</h1>')
+	
+app1/urls.py
+==============
+from django.conf.urls import url
+from app1.views import welcome_view
+urlpatterns = [
+    url(r'$^',welcome_view),
+]
+
+
+urls.py
+========
+from django.conf.urls import url,include
+
+urlpatterns = [
+    url(r'app1/',include('app1.urls'))
+]
+
+
+http://127.0.0.1:8000/app1/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

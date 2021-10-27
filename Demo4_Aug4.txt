@@ -1,0 +1,22 @@
+Django installation:
+====================
+1.Open cmd prompt
+2.Type following command
+	pip install django==3.6.2
+3.To verify
+	django-admin --version
+
+Creating empty django project:
+=============================
+
+1.Creating Project
+syntax:
+	django-admin	startproject		<projectname>
+example:
+	django-admin	startproject		djangoapp1
+
+2.Run project
+	->Enter into your project folder
+		cd djangoapp1
+	->Run manage.py file on django server because it consist main()
+		python 	manage.py  runserver

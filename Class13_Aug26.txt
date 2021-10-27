@@ -1,0 +1,85 @@
+ModelForm Class:
+================
+ModelForm class creates html form based on Model class
+ModelForm class belongs to django module
+
+
+AppName			:  	djangoapp10
+SubProjectName	:	empdata
+ModelName		:	Employee with email,pswd,fullname,city,salary
+
+DirectoryStructure:
+
+(+)djangoapp10
+
+	(+)djangoapp10
+		->settings.py
+		->urls.py
+		
+	(+)emp
+		(+)migrations
+		->views.py
+		->models.py
+		->admin.py
+		->forms.py
+		(+)templates
+			signup.html
+	
+	->manage.py
+	
+csrf_token:(Cross Site Request Forgery)
+==============
+
+	<input type="hidden"   value="TOKEN">
+
+Step1:Prepare your model class
+Step2:Register your model class in admin.py
+Step3:Prepare forms.py file to configure ModelForm class
+
+from emp.models import Employee
+from django import forms
+class EmpSignUpForm(forms.ModelForm):
+    class Meta:
+        model=Employee
+        fields='__all__'
+		
+Step4:Prepare view to render above form into template (views.py)
+
+from django.shortcuts import render
+from emp.forms import EmpSignUpForm
+
+def homev(request):
+    emp1=EmpSignUpForm()
+    return render(request,'signup.html',{"empform":emp1})
+	
+Step5:Prepare signup.html template
+
+<body>
+    <form method="post" action="">
+        {% csrf_token %}
+        <ul>
+             {{empform.as_ul}}
+        </ul>
+    <input type="submit">
+    </form>
+</body>
+
+Note:
+=====
+You can customize the form display 
+	as table			: 	empform.as_table
+	as paragraph		:	empform.as_p
+	as list 			:  	empform.as_ul
+
+
+
+
+
+
+
+
+
+
+
+
+

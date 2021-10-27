@@ -1,0 +1,25 @@
+Q1.What is debugging ?
+
+Ans:
+	A debugging is the process of detecting and correcting errors in a program.
+	Or
+	A process of examine the code execution line by line.
+	
+Q2.What is BreakPoint ?
+
+Ans:
+	It indicate the lines of code where the program will be suspended for you to examine it's state.
+	
+Q3.How to create a break point ?
+Q4.How to run a program in debug mode ?
+	Shift + F9
+
+F7  	=> 	StepIn
+Alt+F8	=>	Evaluate the expression
+-----------------------------------------------------------------------
+Logging:
+=======
+	
+	
+
+	

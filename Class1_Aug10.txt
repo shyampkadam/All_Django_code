@@ -1,0 +1,59 @@
+application name-djangoapp1:
+============================
+1.Django project directory structure
+2.Url patterns in urls.py
+3.Creating view in django project
+	-> Right Click on sub directory 
+	-> new 
+	-> python file 
+	-> name=myviews 
+	-> Click enter
+4.Registering view into urls.py
+-----------------------------------------------------------------
+application name-djangoapp2:
+============================
+
+		Template Text   		Vs  		Template File
+		
+		<h1> Hello  <h1>					one.html
+		
+											<html>
+											<body>
+												<h1> Hello  <h1>	
+											</body>
+											</html>
+										
+Q1.How to send Template Text as responce to browser ?
+Ans:
+	Using HttpResponse class we can send Template Text as response to browser 
+	
+Q2.How to send Template File as responce to browser ?
+Ans:
+	Using render() function we can send Template File as response to browser 
+syntax:
+		render(request,templatename)
+	
+Q3.How to create Template Files ?
+Ans:
+	Step1:Create template folder under sub directory
+	Step2:Create html file under template folder
+	Step3:To avoid "TemplateDoesNotExist" error,we have register template folder inside setting.py file
+	
+	
+Note: 
+Always create template first then use that templates inside views & then regsiter that views in urls.py.
+
+-----------------------------------------------------------------
+application name-djangoapp3:
+============================
+
+Q1.Can we send data from view to template ?
+Ans:
+	Yes, we can send Using render() function as 3rd argument in dictionary format.
+
+syntax:
+		render(request,templatename,{key1:value,key2:value})
+
+Q2.How we can accpet/bind python variable into template file ?
+Ans:
+	Using DTL expression {{key}} , we can bind python variable inside template file.

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        header
+        {
+            text-align:center;
+            background-color:skyblue;
+            color:white;
+        }
+        footer
+        {
+            text-align:center;
+            background-color:pink;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Update Employee Details Here</h1>
+        <nav>
+            <a href="{% url 'homel'%}">Home</a>
+        </nav>
+    </header>
+    <hr>
+    <form action="{% url 'editprocess'%}">
+    <table align="center" border="1px" cellpadding="5px" cellspacing="5px">
+        <tr>
+            <th>Email</th>
+            <td>
+                <input type="hidden" name="n1" value='{{e.email}}'>
+            </td>
+        </tr>
+        <tr>
+               <th>Password</th>
+                <td>
+                    <input type="text" name="n2" value='{{e.password}}'>
+                </td>
+        </tr>
+        <tr>
+             <th>Full Name</th>
+              <td>
+                    <input type="text" name="n3" value='{{e.fullName}}'>
+                </td>
+        </tr>
+        <tr>
+             <th>City</th>
+             <td>
+                    <input type="text" name="n4" value='{{e.city}}'>
+             </td>
+        </tr>
+        <tr>
+            <th>Salary</th>
+             <td>
+                    <input type="text"  name="n5" value='{{e.salary}}'>
+             </td>
+        </tr>
+         <tr>
+            <td>
+                <input type="submit" value="Update Data">
+            </td>
+        </tr>
+    </table>
+    </form>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <hr>
+    <footer>
+        <h3>Copyright@AshokIt</h3>
+    </footer>
+</body>
+</html>

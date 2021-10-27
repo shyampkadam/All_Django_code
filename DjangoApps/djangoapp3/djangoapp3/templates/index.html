@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="skyblue" text="white">
+        <h1>This is Home Page</h1>
+        <h2>
+            My Id is : {{pid}}
+        </h2>
+         <h2>
+            My Name is : {{pname}}
+        </h2>
+         <h2>
+            My Age is : {{page}}
+        </h2>
+        <p>
+            {% if page > 100 %}
+                <b style="color:red">Age must be less than 100</b>
+            {% elif page > 18 %}
+                <b style="color:blue">Valid age for voting</b>
+            {% else %}
+                 <b style="color:red">Age must be greater than 18</b>
+            {% endif %}
+        </p>
+        <h3>
+            {{hob}}
+        </h3>
+        <h1>All Hobbies</h1>
+        <ol>
+            {% for i in hob %}
+             <li> {{i}} </li>
+            {% endfor %}
+        </ol>
+</body>
+</html>

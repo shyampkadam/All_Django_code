@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        *{margin:5px;padding:5px;}
+    </style>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+<nav>
+    <a href="{% url 'homel'%}"> Home </a> |
+    <a href="{% url 'aboutl'%}"> about </a> |
+    <a href="#"> contact </a> |
+    <a href="#"> SignUp </a> |
+    <a href="#"> SignIn </a> |
+</nav>
+<h1>Contact Page Content Goes Here</h1>
+{% endblock %}
+</body>
+</html>

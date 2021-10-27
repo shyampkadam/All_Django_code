@@ -1,0 +1,60 @@
+Web related terms:
+==================
+
+1.Web page:
+	It is a page which made up of using text,form,images,videos & audio.
+	
+	Ex:
+		1.login page
+		2.registration page
+		3.home page
+		4.about page
+		5.contactus page
+		
+	Types of Web pages:
+		1.Static Web Pages
+				1.login page
+				2.registration page
+				3.home page
+				4.about page
+				5.contactus page
+		2.Dynamic Web Pages
+				1.For registration : regsuccess , regerror
+				2.For registration : loginsuccess ,loginerror
+		
+2.Web site:
+		A website is a collection of interrelated web pages.
+		
+	Ex:
+		https://en.wikipedia.org/wiki/Main_Page
+		https://www.facebook.com
+		https://www.gmail.com
+		
+3.Web browser:
+	It is a client side software used to 
+		1.Make request to server
+		2.Accept response from the server
+	Ex:
+		GC,FF,IE,S,...
+		
+4.Web server:
+	It is a server side software used to 
+		1.Accept the request throught http protocol
+		2.Validate the request 
+		3.Generate response
+		4.Send response to browser throught http protocol
+	Ex:
+		IIS,ApacheTomcat,Jetty,Django,..
+		
+5.http protocol:
+	It is application layer protocol, Using this protocol
+		1.We can make request to web server
+		2.We can accept response from the web server
+	
+	Http Status Codes:
+	
+		1xx -> Info related 
+		2xx	-> request success related
+		3xx -> redirect related
+		4xx -> client side errors
+		5xx -> server side errors
